@@ -16,6 +16,6 @@
 - name: Install Elasticsearch packages
   apt:
     pkg:
-      - openjdk-7-jre-headless
+      - openjdk-8-jre-headless
       - elasticsearch={{ es_version }}
     state: present
