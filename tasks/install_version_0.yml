@@ -1,21 +1,15 @@
-- name: Add Java 7 repository
+- name: Add OpenJDK repository
   apt_repository:
     repo: "ppa:openjdk-r/ppa"
     state: present
     update_cache: yes
 
-- name: Add Elasticsearch repository
-  vars:
-    # 0.90.13 => 0.90
-    repoVersion: "{{ es_version|regex_replace('^([^.]*.[^.]*).*', '\\1') }}"
-  apt_repository:
-    repo: "deb http://packages.elasticsearch.org/elasticsearch/{{ repoVersion }}/debian stable main"
-    state: present
-    update_cache: yes
-
-- name: Install Elasticsearch packages
+- name: Install JRE 8
   apt:
     pkg:
       - openjdk-8-jre-headless
-      - elasticsearch={{ es_version }}
     state: present
+
+- name: Install Elasticsearch package
+  apt:
+    deb: https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-{{es_version}}.deb

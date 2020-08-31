@@ -3,6 +3,7 @@
     repo: 'deb http://packages.elasticsearch.org/elasticsearch/{{ es_version[0] }}.x/debian stable main'
     state: present
     update_cache: yes
+    mode: 0600
 
 - name: Install Elasticsearch packages
   apt: pkg={{ item }} state=present
